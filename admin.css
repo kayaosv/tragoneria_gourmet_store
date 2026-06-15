@@ -892,3 +892,69 @@ input::placeholder, textarea::placeholder {
 /* scrollbar styling for sidebar */
 .sidebar::-webkit-scrollbar { width: 6px; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE — fills the responsive gaps left by the desktop stylesheet
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Topbar ─────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .topbar { padding: 0 14px; }
+
+  /* strip out non-essential left-side elements */
+  .topbar__panel,
+  .topbar__divider,
+  .topbar__breadcrumb { display: none; }
+
+  .topbar__brand { font-size: 17px; }
+  .topbar__right { gap: 8px; }
+
+  /* avatar only — hide "Juan Carlos / Propietario" text */
+  .topbar__user > span:last-child { display: none; }
+  .topbar__user { padding: 4px 4px; gap: 0; }
+}
+
+@media (max-width: 440px) {
+  /* viewswitch no longer fits — hide it; user stays in admin on mobile */
+  .topbar__viewswitch { display: none; }
+  .topbar__brand { font-size: 15px; }
+}
+
+/* ── Action strip ───────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .actionstrip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .actionstrip__title h1 { font-size: 22px; }
+  .actionstrip__actions { width: 100%; justify-content: flex-end; gap: 8px; }
+}
+
+@media (max-width: 440px) {
+  /* "Descartar" is least critical — remove to free space */
+  .actionstrip__actions > button:first-child { display: none; }
+  .actionstrip__actions .btn { padding: 9px 14px; }
+}
+
+/* ── Page & card padding ────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .layout     { padding: 14px 12px 100px; gap: 12px; }
+  .card__head { padding: 12px 14px; }
+  .card__body { padding: 14px 14px 16px; }
+}
+
+/* ── Product rows (pairings / related) — very small screens ─────── */
+@media (max-width: 360px) {
+  .product-row {
+    grid-template-columns: 44px 1fr 22px;
+    grid-template-rows: auto auto;
+    row-gap: 6px;
+  }
+  /* price input drops to second row, spanning all columns */
+  .product-row .input-prefix {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
